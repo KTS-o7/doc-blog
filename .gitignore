@@ -1,0 +1,12 @@
+# lock files
+*.lock
+
+# os files
+.DS_Store
+
+# hugo files
+.hugo_build.lock
+
+#public files
+public/
+
