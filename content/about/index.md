@@ -6,31 +6,31 @@ weight: 3
 
 # About Me
 
-Hi there! 👋 I'm passionate about technology, software development, and creating meaningful digital experiences.
+Hey there! 👋 I'm Krishnatejaswi S, a developer from Bangalore, India who's super into Generative AI, Langchain, and all that cool buzzy tech stuff. 
 
-## Who I am
+Interned at RingCentral then shifted to Onfinance.ai as a full stack developer.
 
-I'm a developer who loves building things with code. Whether it's crafting elegant web applications, exploring new technologies, or sharing knowledge through writing, I enjoy the process of creation and learning.
+I'm also a senior core member at Coding Club RVCE where I help mentor other students and organize coding events.
 
-## What I do
+I've been tinkering around with Python, C++, React/Next.js, Streamlit, and AI frameworks like Langchain and Mirascope - basically whatever tools help me build nice things!
 
-- **Software Development**: Building web applications and exploring modern development practices
-- **Writing**: Sharing knowledge and experiences through blog posts
-- **Learning**: Constantly expanding my skills and staying up-to-date with technology trends
-- **Open Source**: Contributing to projects that make a positive impact
+Some fun projects I've worked on include Portfolio-GPT (yep, built my portfolio website entirely with LLMs!), Better Bing Image Downloader (a Python tool that got 20+ stars on GitHub), and QuantQuips (a trading platform that even got featured at JPMC). 
 
-## Interests
+I've also dabbled in research, writing papers about CNN algorithms for medical imaging and building an OCR system that boosted accuracy by 40%.
 
-When I'm not coding, you can find me:
-- Reading about technology and software engineering
-- Exploring new programming languages and frameworks
-- Working on personal projects
-- Contributing to open source communities
-
-## Get in touch
-
-I'm always interested in connecting with fellow developers and tech enthusiasts. Feel free to reach out if you'd like to discuss technology, collaborate on projects, or just chat about the latest in software development.
+When I'm not coding, I'm usually reading about fiction, trying to outsmart the social media algorithms, or contributing to open source projects. 
+drop a hi there if you see me around!
 
 ---
 
-*Thanks for visiting my blog! If you enjoyed reading my posts, consider subscribing to stay updated with my latest content.*
+| Contact | Details |
+|---------|---------|
+| **Email** | krishna.tejaswi@shenthar.com |
+| **Phone** | +91 (776) 095-1918 |
+| **Portfolio** | [krishnatejaswi-s.vercel.app](https://krishnatejaswi-s.vercel.app/) |
+| **GitHub** | [KTS-o7](https://github.com/KTS-o7) |
+| **LinkedIn** | [krishnatejaswi-shenthar](https://www.linkedin.com/in/krishnatejaswi-shenthar/) |
+
+---
+
+*Thanks for visiting my blog! If you enjoyed reading my posts, consider checking out the RSS feed to stay updated with my posts*

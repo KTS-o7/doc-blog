@@ -52,12 +52,7 @@ enableRobotsTXT = true
   themeStyle = "herman"
 
   # Generate social cards for posts without images
-  generateSocialCard = true
-
-  # Social media links (uncomment and fill in as needed)
-  [params.social]
-    twitter = "yourusername" # Twitter handle (without '@')
-  #   facebook_admin = "0000000000" # Facebook Page Admin ID
+  generateSocialCard = false
 
   # Author metadata for RSS feed and footer
   [params.author]

@@ -4,21 +4,21 @@ menu: "main"
 weight: 1
 ---
 
-# ᕦʕ •ᴥ•ʔᕤ Bear Cub Blog
+---
+# ᕦʕ •ᴥ•ʔᕤ 
+hey there, welcome to BearMind !
+This is where I share my thoughts, experiences, and insights on various topics that interest me.
 
-Welcome to my personal blog! This is where I share my thoughts, experiences, and insights on various topics that interest me.
-
-I'm passionate about technology, development, and creating meaningful digital experiences. Through this blog, I aim to document my journey, share knowledge, and connect with like-minded individuals.
+I write random stuff here, so feel free to explore the [posts](/posts/) section to see what I've been writing about
 
 ## What to expect
+- **Random posts** about my random thoughts and experiences
+- **Technical posts** about programming, development, and software engineering
+- **Tutorials and guides** to make sure one doesnt get lost like I did :<
+- **Book reviews** ( so that I sound fancy :D)
 
-- **Technical posts** about programming, web development, and software engineering
-- **Personal reflections** on life, learning, and growth
-- **Tutorials and guides** to help others on their coding journey
-- **Book reviews** and recommendations from my reading list
+Feel free to explore or learn more [about me](/about/).
 
-Feel free to explore the [posts](/posts/) section to see what I've been writing about, or learn more [about me](/about/).
+# ʕง•ᴥ•ʔง Lets goooo !
 
 ---
-
-*Built with ❤️ using [Hugo](https://gohugo.io/) and the [Bear Cub](https://github.com/clente/hugo-bearcub/) theme.*
