@@ -1,3 +1,25 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = "https://example.org/"
+languageCode = "en-us"
+title = "Bear Cub Blog"
+theme = "hugo-bearcub"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+
+[params]
+  dateFormat = "2006-01-02"
+  math = false
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+
+[outputs]
+  home = ["HTML", "RSS"]
