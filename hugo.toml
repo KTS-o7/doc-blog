@@ -1,9 +1,19 @@
 baseURL = "https://example.org/"
 languageCode = "en-us"
-title = "Bear Cub Blog"
-theme = "hugo-bearcub"
 
+theme = "hugo-bearcub"
+copyright = "Krishnatejaswi S"
+defaultContentLanguage = "en"
+
+# Generate a nice robots.txt for SEO
+enableRobotsTXT = true
+
+# Setup syntax highlighting without inline styles
 [markup]
+  [markup.highlight]
+    lineNos = true
+    lineNumbersInTable = false
+    noClasses = false
   [markup.goldmark]
     [markup.goldmark.extensions]
       [markup.goldmark.extensions.passthrough]
@@ -12,14 +22,51 @@ theme = "hugo-bearcub"
           block = [['\[', '\]'], ['$$', '$$']]
           inline = [['\(', '\)']]
 
-[params]
-  dateFormat = "2006-01-02"
-  math = false
-
 [languages]
   [languages.en]
     languageName = "English"
+    languageCode = "en-us"
     weight = 1
+    [languages.en.params]
+      madeWith = "Made with [Bear Cub](https://github.com/clente/hugo-bearcub)"
+
+# Parameters
+[params]
+  # The path to your favicon (add this file to static/images/favicon.png)
+  favicon = "images/favicon.png"
+
+  # These images will show up when services want to generate a preview of a link
+  # to your site. Add these to static/images/
+  images = ["images/share.webp"]
+
+  # Dates are displayed following this format
+  dateFormat = "2006-01-02"
+
+  # Math rendering support
+  math = true
+
+  # Hide untranslated pages (for future multilingual support)
+  hideUntranslated = false
+
+  # Theme style: "original" or "herman"
+  themeStyle = "herman"
+
+  # Generate social cards for posts without images
+  generateSocialCard = true
+
+  # Social media links (uncomment and fill in as needed)
+  [params.social]
+    twitter = "yourusername" # Twitter handle (without '@')
+  #   facebook_admin = "0000000000" # Facebook Page Admin ID
+
+  # Author metadata for RSS feed and footer
+  [params.author]
+    name = "Krishnatejaswi S" 
+    email = "shentharkrishnatejaswi@gmail.com" 
 
 [outputs]
   home = ["HTML", "RSS"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
