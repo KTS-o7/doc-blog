@@ -44,9 +44,8 @@ c & d
 $$
 
 ### Limits and Derivatives
-The derivative of $f(x) = x^2$:
 $$
-\frac{d}{dx}(x^2) = 2x
+\text{If } f(x) = x^{2}, \text{ then } \frac{d}{dx} (x^{2}) = 2x.
 $$
 
 Limit as x approaches infinity:
