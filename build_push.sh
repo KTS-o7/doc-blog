@@ -53,8 +53,8 @@ git_commit_and_push() {
     
     cd "$repo_path" || { print_error "Failed to cd to $repo_path"; exit 1; }
     
-    # Check if there are changes to commit
-    if git diff --quiet && git diff --staged --quiet; then
+    # Check if there are changes to commit (including untracked files)
+    if git diff --quiet && git diff --staged --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
         print_warning "No changes to commit in $repo_name"
         return
     fi
