@@ -14,6 +14,15 @@ One way to do this is to first write all the even numbers between 1 and n in inc
 
 This is only one such solution. There are other solutions as well.
 
+Edge case:
+- If n is 1, print 1. this is  because there are no consecutive elements in the permutation, hence is a valid permutation.
+- If n is less than 4, print "NO SOLUTION".
+ because for n < 4, any permutation will have a difference between any two consecutive elements less than 1.
+ example 
+ 1 2 3 4, 1 3 2 4, 1 3 4 2, etc are not valid permutations.
+
+
+
 ## Solution
 ```python
 def main():
