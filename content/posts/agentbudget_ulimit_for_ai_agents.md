@@ -1,132 +1,154 @@
 +++
-title = "AgentBudget: The ulimit for AI Agents"
+title = "Fixing Silent $0 Streaming Costs in AgentBudget: An OSS Contribution"
 date = 2026-04-16T00:00:00+05:30
 draft = false
 math = false
 +++
 
-An AI agent runs a research loop. It calls a search API, summarizes results, decides it needs more context, calls the API again, and again. The model is uncertain so it hedges -- more calls, longer prompts, bigger context windows. By the time the loop terminates, $47 has left the account. No warning. No circuit breaker. Just a bill.
+AgentBudget patches the OpenAI and Anthropic SDKs to track the cost of every LLM call. Set a budget, get a hard limit. Simple premise.
 
-This is not a hypothetical. It is the default behavior of every LLM agent framework in existence. There is no standard primitive that says "stop spending after this amount." So I built one.
+Except there was a gap. Every streaming call cost $0.00 in the ledger. Silently. No error, no warning -- just wrong numbers.
 
-## The Unix analogy that made this obvious
+I found the gap, fixed it, and got the PR merged. This is the story of how streaming cost tracking actually works.
 
-Unix has `ulimit`. It is a hard ceiling on what a single process can consume -- file descriptors, stack size, CPU time, virtual memory. When the process hits the limit, it gets a signal. The system does not let one misbehaving process eat everything.
+## What AgentBudget does
 
-AI agent sessions have no equivalent. A single runaway loop can exhaust a budget in seconds. The infrastructure around the agent (LangGraph, AutoGen, plain Python) has no concept of a dollar ceiling. The LLM provider will happily keep serving requests until your credit card says no.
-
-AgentBudget is that missing primitive. You set a dollar limit. Any session that crosses it raises `BudgetExhausted`. No silent overruns.
-
-## What it actually does
-
-The core idea is monkey-patching at the SDK level, the same pattern used by Sentry and Datadog. When you call `agentbudget.init("$5.00")`, it wraps the `create` methods on the OpenAI and Anthropic clients. Every call goes through the wrapper, which:
-
-1. Looks up the cost of the model being called using a bundled pricing table
-2. Adds the cost to the running session total
-3. Raises `BudgetExhausted` if the total would exceed the limit
-
-The application code does not change. No refactoring. No new client objects. Two lines:
+AgentBudget is an open-source SDK that puts a hard dollar limit on AI agent sessions. Two lines, no infrastructure:
 
 ```python
 import agentbudget
 agentbudget.init("$5.00")
-
-# Everything below is unchanged
-client = openai.OpenAI()
-response = client.chat.completions.create(
-    model="gpt-4o",
-    messages=[{"role": "user", "content": "Research this topic in depth"}]
-)
 ```
 
-When the session ends:
+It works by monkey-patching `Completions.create` (OpenAI) and `Messages.create` (Anthropic) at init time. Every call goes through a wrapper that looks up the model cost, accumulates spend, and raises `BudgetExhausted` when the limit is hit.
+
+The non-streaming path worked fine. The streaming path did not.
+
+## The bug
+
+When `stream=True`, the patched method receives a `Stream` object back from the SDK -- not a completed response with token counts. The original code had no handling for this case. It silently passed the stream through untracked.
+
+Every streaming call registered as $0.00 in the ledger. Any agent using streaming could blow past its budget with zero resistance. The circuit breaker was blind to half its traffic.
+
+## Why streaming is harder to cost
+
+Non-streaming is straightforward: the response comes back with a `usage` object containing `prompt_tokens` and `completion_tokens`. Multiply by the per-token rate, done.
+
+Streaming returns a sequence of chunks. Token counts are not available upfront -- they only appear after the stream is exhausted. For OpenAI specifically, usage data on the final chunk is opt-in: you need `stream_options={"include_usage": True}` in the request, otherwise the final chunk carries no usage data and there is nothing to cost.
+
+Anthropic handles it differently. Usage data is always present, split across two events: `message_start` carries input tokens, `message_delta` carries output tokens at the end.
+
+## The fix: transparent wrapper classes
+
+The solution is four wrapper classes that intercept the stream, yield every chunk unchanged, and record cost after the iterator is exhausted:
+
+| Class | Wraps |
+|---|---|
+| `_OpenAIStreamWrapper` | `openai.Stream[ChatCompletionChunk]` |
+| `_AsyncOpenAIStreamWrapper` | `openai.AsyncStream[ChatCompletionChunk]` |
+| `_AnthropicStreamWrapper` | `anthropic.Stream[RawMessageStreamEvent]` |
+| `_AsyncAnthropicStreamWrapper` | `anthropic.AsyncStream[RawMessageStreamEvent]` |
+
+Each wrapper is fully transparent to the caller. The existing code pattern -- `for chunk in stream:` or `async for chunk in stream:` or `with client.stream(...) as stream:` -- continues to work without any changes.
+
+The wrapper accumulates token counts as chunks arrive, then records the cost in the session ledger once the stream ends.
+
+For OpenAI:
 
 ```python
-print(agentbudget.spent())      # 0.0423
-print(agentbudget.remaining())  # 4.9577
-print(agentbudget.report())     # Full breakdown by model and call count
-agentbudget.teardown()          # Restore original SDK methods
+class _OpenAIStreamWrapper:
+    def __init__(self, stream, session, model):
+        self._stream = stream
+        self._session = session
+        self._model = model
+
+    def __iter__(self):
+        for chunk in self._stream:
+            # Track usage from the final chunk
+            if chunk.usage:
+                cost = price(self._model, chunk.usage)
+                self._session.record(cost)
+            yield chunk
+
+    # Full protocol: __enter__, __exit__, close()
 ```
 
-For cases where you want explicit per-client tracking without global patching, there is a manual mode using context managers:
+For Anthropic, the accumulation spans two event types:
 
 ```python
-from agentbudget import AgentBudget
-
-budget = AgentBudget(max_spend="$5.00")
-
-with budget.session() as session:
-    response = session.wrap(client.chat.completions.create(
-        model="gpt-4o",
-        messages=[{"role": "user", "content": "Analyze this dataset"}]
-    ))
-
-    # Track external API calls with known costs
-    result = session.track(call_search_api(query="market data"), cost=0.01)
-
-    # Pre-flight check before an expensive call
-    if not session.would_exceed(0.50):
-        big_response = session.wrap(client.chat.completions.create(...))
+class _AnthropicStreamWrapper:
+    def __iter__(self):
+        input_tokens = 0
+        output_tokens = 0
+        for event in self._stream:
+            if event.type == "message_start":
+                input_tokens = event.message.usage.input_tokens
+            elif event.type == "message_delta":
+                output_tokens = event.usage.output_tokens
+            yield event
+        cost = price(self._model, input_tokens, output_tokens)
+        self._session.record(cost)
 ```
 
-## The hard parts
+The detection of whether a response is a stream happens via `isinstance` checks guarded by `ImportError`, so the wrapper degrades gracefully if only one SDK is installed.
 
-### Streaming costs
+## Implementing the full protocol
 
-Streaming is where naive implementations fall apart. When you use `stream=True`, the API does not return a single response object with token counts -- it sends a sequence of deltas. The total cost is only known once the stream is exhausted.
+The tricky part is not the cost tracking logic -- it is making the wrapper implement the full stream protocol correctly.
 
-For OpenAI streaming, you need `stream_options={"include_usage": True}` in the request to get token counts in the final chunk. Without it, there is nothing to price. AgentBudget injects this option automatically when patching the client, so streaming calls are tracked transparently without any change to the call site.
+Python streams support multiple usage patterns: iterator (`for chunk in stream`), context manager (`with stream`), async iterator, async context manager, and explicit `close()`/`aclose()`. Missing any of these means certain callers will break with an `AttributeError` or a resource leak.
 
-For async streaming, the same wrapper applies to `AsyncOpenAI` and `AsyncAnthropic`.
-
-### Thread safety
-
-The first community PR exposed a race condition. When multiple threads call the patched `create` method concurrently -- common in multi-agent setups -- the running total gets updated by multiple writers simultaneously. The fix is a lock around the accumulator. The lock is held only for the increment, not for the actual API call, so contention is minimal.
-
-### OpenRouter model names
-
-OpenRouter uses namespaced model names like `openai/gpt-4o` and `anthropic/claude-3-5-sonnet`. The pricing table keys on bare model names. Early versions silently treated OpenRouter calls as free. The fix is a normalization step that strips the provider prefix before lookup.
-
-### The finalization reserve
-
-There is a subtle failure mode specific to agentic loops: the agent runs out of budget mid-task and raises `BudgetExhausted` before producing any final output. The user gets an exception instead of a partial result.
-
-The `finalization_reserve` parameter addresses this. You reserve a fraction of the budget for the final response step:
+The wrapper needs to implement all of them:
 
 ```python
-agentbudget.init("$5.00", finalization_reserve=0.10)
+# Sync: iterator + context manager + close
+def __iter__(self): ...
+def __enter__(self): return self
+def __exit__(self, *args): self.close()
+def close(self): self._stream.close()
+
+# Async: async iterator + async context manager + aclose
+async def __aiter__(self): ...
+async def __aenter__(self): return self
+async def __aexit__(self, *args): await self.aclose()
+async def aclose(self): await self._stream.aclose()
 ```
 
-This means `BudgetExhausted` is raised when 90% of the budget is consumed, not 100%. The agent's exception handler can then trigger a summarization call using the remaining 10% to produce a graceful final response rather than a crash.
+Getting this wrong is invisible in unit tests with mocks but breaks immediately against real SDK objects.
 
-## Multi-language SDKs
+## Tests
 
-Python was the obvious starting point, but production AI systems are not always Python. The Go and TypeScript SDKs follow the same API surface -- `init`, `session`, `wrap`, `track`, `report` -- so the mental model transfers across languages.
+The PR added 19 tests covering:
 
-The Go SDK has no external dependencies and is imported directly from GitHub. The TypeScript SDK is on npm. The Python SDK is on PyPI. All three are maintained under the same organization.
+- Cost recorded correctly after stream exhaustion
+- Chunks with no usage data skipped without error
+- Passthrough identity -- every chunk the caller sees is unchanged
+- `BudgetExhausted` propagates correctly mid-stream
+- Both `for chunk in stream:` and `with client.stream() as stream:` patterns
+- `close()` and `aclose()` delegation to the underlying stream
+- Drop-in mode (`agentbudget.init()`) wrapping end-to-end
+- No-session noop -- if no budget session is active, streaming is fully transparent
 
-Go does not have monkey-patching, so the Go SDK uses an explicit wrapper pattern rather than global init. TypeScript uses the same approach as Python. The trade-off is explicitness over convenience -- in Go, you always know exactly what is being tracked.
+All 129 pre-existing tests continued to pass. 148 total passing at merge.
 
-## What the community found
+## The known limitation
 
-The first external contributors surfaced four bugs that only appear under real workloads:
+OpenAI streaming requires the caller to pass `stream_options={"include_usage": True}`. Without it, the final chunk carries no usage data, and the cost is silently $0.
 
-- Thread safety on the accumulator under concurrent agent calls
-- Off-by-one on budget comparison (`>` instead of `>=`, allowing sessions to reach exactly the limit without raising)
-- Silent crash when the pricing table has no entry for a model (should warn and continue)
-- Negative costs accepted silently on manual `track()` calls
+This is OpenAI's API behaviour -- usage data on streams is opt-in. The limitation is documented in the module docstring. A future improvement could auto-inject the option at the patch layer, but that requires modifying the outbound request, which is a bigger change than this PR intended to be.
 
-None of these are visible in single-threaded demos. They all appear in production at scale. Getting external contributors to find them early was the most valuable outcome of publishing the SDK quickly.
+Anthropic has no equivalent limitation -- usage is always present.
 
-## The missing primitive
+## What I learned
 
-The ecosystem treats cost as a billing concern, not an engineering concern. Billing happens outside your code -- on a dashboard, in a monthly report. But cost is a runtime property of every LLM call, and it should be observable and controllable from inside your code.
+**Transparent wrappers need the full protocol.** It is tempting to implement just `__iter__` and call it done. But real callers use context managers, explicit close, and async variants. Implementing the minimum breaks production code in ways that are hard to debug.
 
-`ulimit` exists because the OS learned, the hard way, that processes without resource limits create operational problems. AI agents are learning the same lesson. The tooling will catch up. Until it does, a two-line drop-in is enough to stop the bleeding.
+**Streaming costs are provider-specific.** OpenAI and Anthropic have different conventions for where usage data appears in the stream. Any SDK that claims to support both needs to handle both separately.
+
+**Test against real SDK objects, not just mocks.** The `isinstance` detection and chunk structure only behave correctly against live SDK classes. Mock-based tests passed for the wrong reasons until I verified against an actual installed SDK.
 
 ## Links
 
+- [PR #6 -- feat: track costs for streaming OpenAI and Anthropic responses](https://github.com/AgentBudget/agentbudget/pull/6)
 - [AgentBudget on GitHub](https://github.com/AgentBudget/agentbudget)
 - [PyPI](https://pypi.org/project/agentbudget/)
-- [npm](https://www.npmjs.com/package/@agentbudget/agentbudget)
-- [Go SDK](https://pkg.go.dev/github.com/AgentBudget/agentbudget/sdks/go)
