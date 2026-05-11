@@ -1,63 +1,90 @@
 baseURL = "https://KTS-o7.github.io/bear"
 languageCode = "en-us"
 
-theme = "hugo-bearcub"
+# ===== THEME =====
+# Default: TeXify3 — LaTeX-style, KaTeX math + Mermaid diagrams
+# To test Shibui, comment below and uncomment the shibui line
+theme = "hugo-texify3"
+# theme = "shibui"
+# theme = "hugo-bearcub"
+
 copyright = "Krishnatejaswi S"
 defaultContentLanguage = "en"
 
 # Generate a nice robots.txt for SEO
 enableRobotsTXT = true
+enableGitInfo = true
 
-# Setup syntax highlighting without inline styles
+[taxonomies]
+  tags = "tags"
+  categories = "categories"
+
 [markup]
+  # Syntax highlighting
   [markup.highlight]
     lineNos = true
     lineNumbersInTable = false
     noClasses = false
+
+  # TeXify3 renders KaTeX natively — no passthrough hack needed
   [markup.goldmark]
-    [markup.goldmark.extensions]
-      [markup.goldmark.extensions.passthrough]
-        enable = true
-        [markup.goldmark.extensions.passthrough.delimiters]
-          block = [['\[', '\]'], ['$$', '$$']]
-          inline = [['\(', '\)']]
+    [markup.goldmark.renderer]
+      unsafe = true
 
-[languages]
-  [languages.en]
-    languageName = "English"
-    languageCode = "en-us"
-    weight = 1
-    [languages.en.params]
-      madeWith = "Made with [Bear Cub](https://github.com/clente/hugo-bearcub)"
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = true
 
-# Parameters
+# Parameters — shared across TeXify3 and Shibui
 [params]
-  # The path to your favicon (add this file to static/images/favicon.png)
-  favicon = "images/favicon.png"
-
-  # These images will show up when services want to generate a preview of a link
-  # to your site. Add these to static/images/
-  images = ["images/share.webp"]
-
-  # Dates are displayed following this format
-  dateFormat = "2006-01-02"
-
-  # Math rendering support
+  # KaTeX math rendering (TeXify3 natively; Shibui needs manual setup)
   math = true
 
-  # Hide untranslated pages (for future multilingual support)
-  hideUntranslated = false
+  # Table of contents on posts
+  toc = true
 
-  # Theme style: "original" or "herman"
-  themeStyle = "herman"
+  # Auto-numbered headings (1.1, 1.2…)
+  numberedSubtitles = true
 
-  # Generate social cards for posts without images
-  generateSocialCard = false
+  # Emphasis dots after headings
+  emphasisWithDots = true
+
+  # Date format
+  dateFormat = "2006-01-02"
+
+  # Base font size
+  rootFontSize = "105%"
+
+  # Site description for SEO / RSS
+  description = "Technical notes on distributed systems, ML, and software"
+
+  # Path to your favicon
+  favicon = "images/favicon.png"
+
+  # Open Graph / Twitter Card preview image
+  images = ["images/share.webp"]
+
+  # DuckDuckGo search box (off by default)
+  enableDuckDuckGoSearchBox = false
+
+  # Footer note
+  footnote = "Powered by <a class=link href=https://gohugo.io target=_blank rel=noopener>Hugo</a> | Theme <a class=link href=https://github.com/michaelneuper/hugo-texify3 target=_blank rel=noopener>TeXify3</a>"
 
   # Author metadata for RSS feed and footer
   [params.author]
-    name = "Krishnatejaswi S" 
-    email = "shentharkrishnatejaswi@gmail.com" 
+    name = "Krishnatejaswi S"
+    email = "shentharkrishnatejaswi@gmail.com"
+
+  # Social sharing buttons
+  [params.sharingbuttons]
+    facebook = false
+    twitter = true
+    email = true
+    linkedin = true
+    reddit = true
+    hackernews = true
+    telegram = true
 
 [outputs]
   home = ["HTML", "RSS"]
