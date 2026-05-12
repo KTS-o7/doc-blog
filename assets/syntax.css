@@ -1,0 +1,178 @@
+/* ============================================================
+   Gruvbox Syntax Highlighting
+   Replaces Dracula — warm, soft contrast, readable for long sessions
+   Based on Gruvbox dark (auto-adapts via CSS vars from herman.css)
+   ============================================================ */
+
+/* Base chroma wrapper */
+.bg  { color: var(--fg1, #ebdbb2); background-color: var(--bg1, #3c3836); }
+.chroma { color: var(--fg1, #ebdbb2); background-color: var(--bg1, #3c3836); }
+
+/* Line infrastructure */
+.chroma .lnlinks { outline: none; text-decoration: none; color: inherit; }
+.chroma .lntd    { vertical-align: top; padding: 0; margin: 0; border: 0; }
+.chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; }
+.chroma .hl      { background-color: #504945; }
+.chroma .lnt     { white-space: pre; user-select: none; margin-right: 0.4em; padding: 0 0.5em; color: #7c6f64; }
+.chroma .ln      { white-space: pre; user-select: none; margin-right: 0.4em; padding: 0 0.5em; color: #7c6f64; }
+.chroma .line    { display: flex; }
+
+/* ── Token colors ────────────────────────────────────────── */
+
+/* Keywords — orange (def, class, return, if, for…) */
+.chroma .k   { color: #fe8019; }
+.chroma .kc  { color: #fe8019; }       /* KeywordConstant */
+.chroma .kd  { color: #fb4934; }       /* KeywordDeclaration — slightly warmer red */
+.chroma .kn  { color: #fe8019; }       /* KeywordNamespace */
+.chroma .kp  { color: #fe8019; }       /* KeywordPseudo */
+.chroma .kr  { color: #fe8019; }       /* KeywordReserved */
+.chroma .kt  { color: #fabd2f; }       /* KeywordType — yellow */
+
+/* Names */
+.chroma .na  { color: #b8bb26; }       /* NameAttribute — green */
+.chroma .nb  { color: #83a598; }       /* NameBuiltin — blue */
+.chroma .nc  { color: #fabd2f; }       /* NameClass — yellow */
+.chroma .nd  { color: #b8bb26; }       /* NameDecorator — green */
+.chroma .nf  { color: #b8bb26; }       /* NameFunction — green */
+.chroma .nl  { color: #83a598; }       /* NameLabel — blue */
+.chroma .nt  { color: #fb4934; }       /* NameTag — red */
+.chroma .nv  { color: #83a598; }       /* NameVariable — blue */
+.chroma .vc  { color: #83a598; }
+.chroma .vg  { color: #83a598; }
+.chroma .vi  { color: #83a598; }
+
+/* Strings — warm yellow */
+.chroma .s   { color: #b8bb26; }
+.chroma .sa  { color: #b8bb26; }
+.chroma .sb  { color: #b8bb26; }
+.chroma .sc  { color: #b8bb26; }
+.chroma .dl  { color: #b8bb26; }
+.chroma .sd  { color: #b8bb26; font-style: italic; }
+.chroma .s2  { color: #b8bb26; }
+.chroma .se  { color: #fe8019; font-weight: bold; }   /* StringEscape — orange */
+.chroma .sh  { color: #b8bb26; }
+.chroma .si  { color: #b8bb26; }
+.chroma .sx  { color: #b8bb26; }
+.chroma .sr  { color: #8ec07c; }       /* Regex — aqua */
+.chroma .s1  { color: #b8bb26; }
+.chroma .ss  { color: #b8bb26; }
+
+/* Numbers — purple */
+.chroma .m   { color: #d3869b; }
+.chroma .mb  { color: #d3869b; }
+.chroma .mf  { color: #d3869b; }
+.chroma .mh  { color: #d3869b; }
+.chroma .mi  { color: #d3869b; }
+.chroma .il  { color: #d3869b; }
+.chroma .mo  { color: #d3869b; }
+
+/* Operators — aqua */
+.chroma .o   { color: #8ec07c; }
+.chroma .ow  { color: #8ec07c; font-weight: bold; }
+
+/* Comments — muted grey-green (not too dim, still readable) */
+.chroma .c   { color: #928374; font-style: italic; }
+.chroma .ch  { color: #928374; font-style: italic; }
+.chroma .cm  { color: #928374; font-style: italic; }
+.chroma .c1  { color: #928374; font-style: italic; }
+.chroma .cs  { color: #928374; font-style: italic; }
+.chroma .cp  { color: #8ec07c; }       /* Preprocessor — aqua */
+.chroma .cpf { color: #8ec07c; }
+
+/* Generic */
+.chroma .gd  { color: #fb4934; }       /* GenericDeleted — red */
+.chroma .ge  { font-style: italic; }
+.chroma .gh  { color: #fabd2f; font-weight: bold; }   /* GenericHeading */
+.chroma .gi  { color: #b8bb26; font-weight: bold; }   /* GenericInserted — green */
+.chroma .go  { color: #665c54; }       /* GenericOutput — muted */
+.chroma .gs  { font-weight: bold; }
+.chroma .gu  { color: #8ec07c; font-weight: bold; }   /* GenericSubheading */
+.chroma .gl  { text-decoration: underline; }
+
+/* Punctuation */
+.chroma .p   { color: #d5c4a1; }
+
+/* ── Light mode overrides ────────────────────────────────── */
+@media (prefers-color-scheme: light) {
+  .bg     { color: #3c3836; background-color: #ebdbb2; }
+  .chroma { color: #3c3836; background-color: #ebdbb2; }
+
+  .chroma .lnt { color: #a89984; }
+  .chroma .ln  { color: #a89984; }
+  .chroma .hl  { background-color: #d5c4a1; }
+
+  .chroma .k   { color: #af3a03; }
+  .chroma .kc  { color: #af3a03; }
+  .chroma .kd  { color: #9d0006; }
+  .chroma .kn  { color: #af3a03; }
+  .chroma .kp  { color: #af3a03; }
+  .chroma .kr  { color: #af3a03; }
+  .chroma .kt  { color: #b57614; }
+
+  .chroma .na  { color: #79740e; }
+  .chroma .nb  { color: #076678; }
+  .chroma .nc  { color: #b57614; }
+  .chroma .nd  { color: #79740e; }
+  .chroma .nf  { color: #79740e; }
+  .chroma .nl  { color: #076678; }
+  .chroma .nt  { color: #9d0006; }
+  .chroma .nv  { color: #076678; }
+  .chroma .vc  { color: #076678; }
+  .chroma .vg  { color: #076678; }
+  .chroma .vi  { color: #076678; }
+
+  .chroma .s   { color: #79740e; }
+  .chroma .sa  { color: #79740e; }
+  .chroma .sb  { color: #79740e; }
+  .chroma .sc  { color: #79740e; }
+  .chroma .dl  { color: #79740e; }
+  .chroma .sd  { color: #79740e; font-style: italic; }
+  .chroma .s2  { color: #79740e; }
+  .chroma .se  { color: #af3a03; font-weight: bold; }
+  .chroma .sh  { color: #79740e; }
+  .chroma .si  { color: #79740e; }
+  .chroma .sx  { color: #79740e; }
+  .chroma .sr  { color: #427b58; }
+  .chroma .s1  { color: #79740e; }
+  .chroma .ss  { color: #79740e; }
+
+  .chroma .m   { color: #8f3f71; }
+  .chroma .mb  { color: #8f3f71; }
+  .chroma .mf  { color: #8f3f71; }
+  .chroma .mh  { color: #8f3f71; }
+  .chroma .mi  { color: #8f3f71; }
+  .chroma .il  { color: #8f3f71; }
+  .chroma .mo  { color: #8f3f71; }
+
+  .chroma .o   { color: #427b58; }
+  .chroma .ow  { color: #427b58; font-weight: bold; }
+
+  .chroma .c   { color: #928374; font-style: italic; }
+  .chroma .ch  { color: #928374; font-style: italic; }
+  .chroma .cm  { color: #928374; font-style: italic; }
+  .chroma .c1  { color: #928374; font-style: italic; }
+  .chroma .cs  { color: #928374; font-style: italic; }
+  .chroma .cp  { color: #427b58; }
+  .chroma .cpf { color: #427b58; }
+
+  .chroma .gd  { color: #9d0006; }
+  .chroma .gh  { color: #b57614; font-weight: bold; }
+  .chroma .gi  { color: #79740e; font-weight: bold; }
+  .chroma .go  { color: #a89984; }
+  .chroma .gu  { color: #427b58; font-weight: bold; }
+
+  .chroma .p   { color: #504945; }
+}
+
+/* Manual theme data attributes */
+[data-theme="light"] .bg,
+[data-theme="light"] .chroma {
+  color: #3c3836;
+  background-color: #ebdbb2;
+}
+
+[data-theme="dark"] .bg,
+[data-theme="dark"] .chroma {
+  color: #ebdbb2;
+  background-color: #3c3836;
+}

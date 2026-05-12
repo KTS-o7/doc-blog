@@ -1,0 +1,89 @@
+{{ define "main" }}
+{{ if not .Params.menu }}
+<h1>{{ .Title }}</h1>
+<p class="byline">
+  <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
+    {{ .Date.Format (default "2006-01-02" .Site.Params.dateFormat) }}
+  </time>
+  {{ with .Params.author }}· {{.}}{{ end }}
+</p>
+{{ end }}
+<content>
+  {{ .Content }}
+</content>
+
+{{/* Tags */}}
+{{ with (.GetTerms "tags") }}
+<p style="margin-top: 1.5rem;">
+  {{ range . }}
+    <a class="blog-tags" href="{{ .RelPermalink }}">#{{ lower .LinkTitle }}</a>
+  {{ end }}
+</p>
+{{ end }}
+
+{{/* Related Notes & Further Reading */}}
+{{ $hasRelated := .Params.related }}
+{{ $hasReading := .Params.reading }}
+{{ if or $hasRelated $hasReading }}
+<div class="related-notes">
+  {{ with .Params.related }}
+  <h4>Connected Notes</h4>
+  <ul>
+    {{ range . }}
+    {{ $page := $.Site.GetPage . }}
+    {{ if $page }}
+    <li>
+      <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
+      <span class="note-date">{{ $page.Date.Format "2006-01-02" }}</span>
+    </li>
+    {{ end }}
+    {{ end }}
+  </ul>
+  {{ end }}
+
+  {{ with .Params.reading }}
+  <h4>Further Reading</h4>
+  <ul>
+    {{ range . }}
+    <li>
+      {{ if .url }}
+        <a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }} ↪</a>
+      {{ else }}
+        {{ .title }}
+      {{ end }}
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</div>
+{{ end }}
+
+{{/* Tags-based related posts (auto, same section) */}}
+{{ $related := .Site.RegularPages.Related . | first 4 }}
+{{ with $related }}
+{{ if not $.Params.related }}
+<div class="related-notes">
+  <h4>Related Notes</h4>
+  <ul>
+    {{ range . }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <span class="note-date">{{ .Date.Format "2006-01-02" }}</span>
+    </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}
+{{ end }}
+
+{{/* Email reply */}}
+{{ if not .Params.hideReply }}
+{{ with .Site.Params.author.email }}
+  <p style="margin-top: 1.5rem; font-size: 0.875rem; color: var(--color-text-muted);">
+    <a href='mailto:{{ . }}?subject={{ i18n "email-subject" }}"{{ default $.Site.Title $.Page.Title }}"'>
+      {{ i18n "email-reply" }} ↪
+    </a>
+  </p>
+{{ end }}
+{{ end }}
+{{ end }}
