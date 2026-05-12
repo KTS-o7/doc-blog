@@ -1,0 +1,36 @@
+{{ define "main" }}
+{{ .Content }}
+
+{{/* Section navigation grid */}}
+<div class="section-grid">
+  {{ range .Site.Sections }}
+  {{ if not (in (slice "cses.fi") .Section) }}
+  <a class="section-card" href="{{ .RelPermalink }}">
+    <span class="section-name">/ {{ .Title | lower }}</span>
+    {{ with .Params.description }}
+    <span class="section-desc">{{ . }}</span>
+    {{ end }}
+  </a>
+  {{ end }}
+  {{ end }}
+</div>
+
+{{/* Recent posts across all sections */}}
+{{ $allPages := where .Site.RegularPages "Type" "!=" "page" }}
+{{ $recent := $allPages | first 8 }}
+{{ with $recent }}
+<p class="home-recent-heading">Recent</p>
+<ul class="blog-posts">
+  {{ range . }}
+  <li>
+    <span>
+      <time datetime='{{ .Date.Format "2006-01-02" }}'>
+        {{ .Date.Format "2006-01-02" }}
+      </time>
+    </span>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}
+{{ end }}

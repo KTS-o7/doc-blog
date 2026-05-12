@@ -22,6 +22,21 @@ enableRobotsTXT = true
           block = [['\[', '\]'], ['$$', '$$']]
           inline = [['\(', '\)']]
 
+# Related content configuration
+[related]
+  includeNewer = true
+  threshold = 80
+  toLower = true
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+  [[related.indices]]
+    name = "keywords"
+    weight = 80
+  [[related.indices]]
+    name = "date"
+    weight = 10
+
 [languages]
   [languages.en]
     languageName = "English"
@@ -56,8 +71,8 @@ enableRobotsTXT = true
 
   # Author metadata for RSS feed and footer
   [params.author]
-    name = "Krishnatejaswi S" 
-    email = "shentharkrishnatejaswi@gmail.com" 
+    name = "Krishnatejaswi S"
+    email = "shentharkrishnatejaswi@gmail.com"
 
 [outputs]
   home = ["HTML", "RSS"]
@@ -65,3 +80,5 @@ enableRobotsTXT = true
   section = ["HTML", "RSS"]
   taxonomy = ["HTML", "RSS"]
   term = ["HTML", "RSS"]
+
+# Navigation menu entries are defined via frontmatter menu params in _index.md files

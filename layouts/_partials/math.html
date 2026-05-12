@@ -23,11 +23,27 @@
   document.addEventListener("DOMContentLoaded", function() {
     renderMathInElement(document.body, {
       delimiters: [
-        {left: '\\[', right: '\\]', display: true},   // block
-        {left: '$$', right: '$$', display: true},     // block
-        {left: '\\(', right: '\\)', display: false},  // inline
+        {left: '\\[', right: '\\]', display: true},
+        {left: '$$', right: '$$', display: true},
+        {left: '\\(', right: '\\)', display: false},
       ],
       throwOnError: false
     });
   });
 </script>
+<style>
+  /* KaTeX color integration with Gruvbox */
+  .katex { color: inherit; }
+  .katex .katex-html { color: inherit; }
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.25rem 0;
+    margin: 1.4rem 0 !important;
+  }
+  /* Prevent display math from bleeding on mobile */
+  @media (max-width: 600px) {
+    .katex-display > .katex { max-width: 100%; }
+    .katex-display > .katex > .katex-html { overflow-x: auto; overflow-y: hidden; }
+  }
+</style>
