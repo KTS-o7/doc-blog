@@ -3,6 +3,9 @@ title = "LLM Inference Optimization: Stop Paying for Idle Silicon"
 date = 2026-05-02T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "LLM inference is memory-bandwidth bound, not compute bound. Continuous batching, speculative decoding, quantization, and KV cache management — the techniques that actually move the needle."
+tags = ["machine-learning", "llm", "inference", "optimization", "performance"]
 +++
 
 GPU bills were doubling every quarter. Throughput wasn't moving. I kept assuming the answer was a bigger GPU. It wasn't.

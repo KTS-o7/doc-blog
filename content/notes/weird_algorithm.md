@@ -3,6 +3,9 @@ title = 'Weird Algorithm'
 date = 2025-09-18T17:05:38+05:30
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "CSES weird algorithm (Collatz conjecture) — simulating the 3n+1 sequence and the open question of whether it always terminates."
+tags = ["competitive-programming", "cses", "algorithms", "mathematics"]
 +++
 
 Link to the problem: [Weird Algorithm](https://cses.fi/problemset/task/1068)

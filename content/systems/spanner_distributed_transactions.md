@@ -3,6 +3,9 @@ title = "How Spanner Does Distributed Transactions Without Classic 2PC"
 date = 2026-05-03T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Google Spanner achieves globally consistent distributed transactions using TrueTime — bounded clock uncertainty instead of classic 2PC, enabling external consistency at planetary scale."
+tags = ["distributed-systems", "databases", "spanner", "transactions", "consistency"]
 +++
 
 Two-phase commit has a well-known problem: crash the coordinator between Phase 1 and Phase 2 and every participant is stuck holding locks, waiting, with no safe way to proceed. 2PC is a blocking protocol.

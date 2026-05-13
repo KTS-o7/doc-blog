@@ -3,6 +3,9 @@ title = "Paxos"
 date = 2026-04-26T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Paxos is a consensus protocol for getting a distributed system to agree on a single value despite node failures and message delays — the foundation of most replicated state machines."
+tags = ["distributed-systems", "consensus", "paxos"]
 +++
 
 Before Raft, there was Paxos. For about two decades it was the foundational answer to distributed consensus -- and it was notoriously hard to implement correctly. Lamport published the original paper in 1989, but it was so difficult to parse that he rewrote it as "Paxos Made Simple" in 2001. The simpler version is still genuinely hard.

@@ -3,6 +3,9 @@ title = "Fixing Parallel Tool Call Streaming in Bifrost: An OSS Bug Hunt"
 date = 2026-03-02T00:00:00+00:00
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Debugging a parallel tool call streaming bug in Bifrost — how delta chunks from different tool calls interleave incorrectly and the fix that restores correct JSON assembly."
+tags = ["open-source", "debugging", "oss-contribution", "llm"]
 +++
 
 An AI agent calls three tools in parallel. The LLM streams back interleaved deltas — a few bytes of `search_documents` arguments, then a few bytes of `get_user`, then more `search_documents`. On the other end, the gateway reassembles these fragments into complete tool calls.

@@ -3,6 +3,9 @@ title = "From Manual Deploys to SHA-Tagged Containers: CI/CD for a K8s Platform"
 date = 2026-02-17T00:00:00+00:00
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "SHA-tagged Docker images replace mutable latest tags, eliminating silent overwrites in CI/CD pipelines. Docker Buildx, multi-arch builds, and dynamic workflow generation for a Kubernetes platform."
+tags = ["infra", "cicd", "docker", "kubernetes", "devops"]
 +++
 
 Someone tagged an image `latest`, pushed it to ECR, and overwrote the image another service was using. Four hours of debugging later, we figured out we were running the wrong binary entirely. That was the week I decided to stop treating deployment as a manual process.

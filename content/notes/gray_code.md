@@ -3,6 +3,9 @@ title = 'Gray Code'
 date = 2025-09-19T23:03:51+05:30
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "Gray code generates binary sequences where consecutive values differ by exactly one bit — the algorithm, its uses in hardware and error correction, and a CSES solution."
+tags = ["competitive-programming", "cses", "algorithms", "combinatorics"]
 +++
 
 Link to the problem : [Gray Code](https://cses.fi/problemset/task/2205)

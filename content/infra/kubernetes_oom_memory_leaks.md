@@ -3,6 +3,9 @@ title = "Hunting OOMKilled in Kubernetes: Four Memory Leaks That Almost Took Dow
 date = 2026-02-16T00:00:00+00:00
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Four memory leaks inside OOMKilled Kubernetes pods — slow async accumulation in Python services, unclosed client sessions, unbounded caches, and how to track each one down without a profiler."
+tags = ["infra", "kubernetes", "python", "debugging", "memory"]
 +++
 
 A pod restarts at 3 AM. Then again at 3:14. By 3:30 it's in a `CrashLoopBackOff`. The dashboard shows memory climbing in a clean line - no spikes, no sudden jumps - just a slow, relentless climb until the OOM killer steps in.

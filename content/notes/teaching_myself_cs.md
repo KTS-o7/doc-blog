@@ -3,6 +3,9 @@ title = "Teaching Myself CS: The Plan"
 date = 2026-05-02T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "A structured self-study plan for computer science fundamentals — algorithms, systems, databases, networks, and mathematics, with resources and a realistic timeline."
+tags = ["learning", "computer-science", "study-plan", "self-improvement"]
 +++
 
 I've been building things with code for a while now, but there are gaps. Not the kind that show up in day-to-day work -- the kind that show up when you're reading a paper and hit a concept you sort of understand but can't really explain, or when you're debugging something deep in a system and realize you're guessing at the underlying mechanics.

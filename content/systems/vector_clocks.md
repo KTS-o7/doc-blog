@@ -3,6 +3,9 @@ title = "Vector Clocks: Causality Without a Shared Clock"
 date = 2026-05-02T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Vector clocks track causality in distributed systems — each event carries a logical timestamp that tells you whether two events are causally related or concurrent."
+tags = ["distributed-systems", "algorithms", "vector-clocks", "causality"]
 +++
 
 In a distributed system there's no shared clock. Two nodes can't agree on what time it is -- network latency is variable, clocks drift, and NTP only gets you so far. So you can't use timestamps to order events across nodes in any meaningful way.

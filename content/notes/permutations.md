@@ -3,6 +3,9 @@ title = 'Permutations'
 date = 2025-09-18T22:49:10+05:30
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "CSES permutations — constructing a permutation of 1..n with no two adjacent elements differing by 1, using an interleaving strategy."
+tags = ["competitive-programming", "cses", "algorithms", "combinatorics"]
 +++
 
 Link to the problem : [Permutations](https://cses.fi/problemset/task/1070)

@@ -3,6 +3,9 @@ title = "Raft Log Compaction: Keeping the Log from Growing Forever"
 date = 2026-05-03T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Raft logs grow forever if left unchecked. Log compaction via snapshots lets nodes discard old entries, transfer state to slow followers, and recover quickly after a restart."
+tags = ["distributed-systems", "consensus", "raft", "replication"]
 +++
 
 Raft's correctness relies on the log. Every state change is appended to it, replicated to a majority, and then applied to the state machine. This works perfectly until you've been running for a few months and the log has millions of entries. Replaying the full log on every restart is slow. A new node joining the cluster would have to receive and apply every entry since the beginning of time.

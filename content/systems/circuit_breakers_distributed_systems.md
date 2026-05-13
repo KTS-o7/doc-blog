@@ -3,6 +3,9 @@ title = "Circuit Breakers: The Pattern That Stops Cascading Failures"
 date = 2026-05-02T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Circuit breakers prevent cascading failures in distributed systems by tripping open when a downstream dependency fails, giving it time to recover while protecting callers."
+tags = ["distributed-systems", "reliability", "patterns", "circuit-breaker"]
 +++
 
 The payment service starts timing out. The fraud detection API it depends on is slow. Your retry logic kicks in -- which makes sense, retries are good -- but now every incoming request is spawning 3x the load on a service that was already struggling. The fraud service falls over completely. Now the entire checkout flow is dead.

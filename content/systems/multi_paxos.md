@@ -3,6 +3,9 @@ title = "Multi-Paxos: From Single Decree to a Replicated Log"
 date = 2026-05-03T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Multi-Paxos extends single-decree Paxos into a replicated log by electing a stable leader, skipping Phase 1 for subsequent entries, and batching proposals for throughput."
+tags = ["distributed-systems", "consensus", "paxos", "replication"]
 +++
 
 Basic Paxos agrees on a single value. That's useful for electing a leader or picking a configuration, but a database needs to agree on a sequence of values -- every write in order, forever. Running one full round of Paxos per log slot would work but it's expensive: two network round-trips per slot, and Phase 1 has to complete before Phase 2 can start.

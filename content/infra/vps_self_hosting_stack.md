@@ -3,6 +3,9 @@ title = "Three Useful Services on a $22/Year VPS"
 date = 2026-04-22T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "A minimal self-hosting stack on a budget VPS — three useful services (sync, chat, library) running on Docker Compose behind nginx, for under $22 a year."
+tags = ["infra", "self-hosting", "vps", "docker"]
 +++
 
 I bought a budget VPS for $22/year -- 1 vCPU, 2.9GB RAM, 30GB disk, Dallas datacenter, Ubuntu 24.04. The plan was to run bots and experiments. I ended up setting up three services that are immediately useful: Obsidian note sync, a private Matrix chat server, and a personal book library.

@@ -3,6 +3,9 @@ title = 'Git'
 date = 2025-12-04T00:00:00+05:30
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "Git internals and practical patterns — objects model, rebase vs merge, worktrees, reflog recovery, and the commands that matter for day-to-day engineering work."
+tags = ["git", "devtools", "productivity"]
 +++
 
 ## Git

@@ -3,6 +3,9 @@ title = "Raft: Consensus for the Rest of Us"
 date = 2026-05-02T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Raft is a consensus algorithm designed for understandability — leader election, log replication, and safety properties explained, with a comparison to Paxos."
+tags = ["distributed-systems", "consensus", "raft", "replication"]
 +++
 
 Paxos is the algorithm everyone cites and almost nobody implements correctly. The gap between the paper and a working, production-safe implementation is wide enough that teams have shipped subtly broken versions without knowing it for months.

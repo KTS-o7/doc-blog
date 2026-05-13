@@ -3,6 +3,9 @@ title = "The Saga Pattern: Distributed Transactions Without the Lock"
 date = 2026-05-02T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "The Saga pattern manages distributed transactions across microservices without 2PC — a sequence of local transactions with compensating actions for rollback when a step fails."
+tags = ["distributed-systems", "patterns", "saga", "microservices"]
 +++
 
 Two-phase commit gives you distributed atomicity. It also gives you a coordinator that can stall your entire system if it crashes at the wrong moment, and locks held across multiple services for however long the transaction takes. For short, internal transactions that's manageable. For a trip booking flow that touches a flight service, a hotel service, and a payment service -- each owned by a different team, each potentially slow -- it's not.

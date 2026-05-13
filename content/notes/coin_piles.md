@@ -3,6 +3,9 @@ title = 'Coin Piles'
 date = 2025-09-23T14:38:08+05:30
 draft = true
 math = true
+author = "Krishnatejaswi S"
+description = "CSES coin piles problem — determining whether two piles can be emptied with operations that remove one coin from one pile or one from each, using divisibility reasoning."
+tags = ["competitive-programming", "cses", "mathematics", "algorithms"]
 +++
 
 Link to the problem : [Coin Piles](https://cses.fi/problemset/task/1754)

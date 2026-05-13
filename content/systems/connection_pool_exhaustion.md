@@ -3,6 +3,9 @@ title = "MongoDB Connection Pool Exhaustion: Diagnosis, Fixes, and SDAM"
 date = 2025-12-06T12:00:00+00:00
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "Diagnosing and fixing MongoDB connection pool exhaustion: SDAM monitoring, pool sizing, async leak patterns, and how to read the driver's topology events."
+tags = ["distributed-systems", "mongodb", "databases", "debugging", "infra"]
 +++
 
 > **Why increasing maxPoolSize breaks your database.** A deep dive into MongoDB connection pooling, SDAM, WiredTiger tickets, and preventing transaction pinning.

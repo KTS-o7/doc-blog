@@ -3,6 +3,9 @@ title = 'Missing Number'
 date = 2025-09-18T17:17:22+05:30
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "CSES missing number — finding the missing integer in a permutation of 1..n in O(n) time using the arithmetic sum formula."
+tags = ["competitive-programming", "cses", "algorithms", "mathematics"]
 +++
 
 Link to the problem : [Missing Number](https://cses.fi/problemset/task/1083)

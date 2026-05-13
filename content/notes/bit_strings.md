@@ -3,6 +3,9 @@ title = 'Bit Strings'
 date = 2025-09-19T22:53:15+05:30
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "CSES bit string enumeration — counting and generating n-character strings over a binary alphabet using recursion and bitmask techniques."
+tags = ["competitive-programming", "cses", "combinatorics", "algorithms"]
 +++
 
 Link to the problem : [Bit Strings](https://cses.fi/problemset/task/1617)

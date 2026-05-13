@@ -9,7 +9,9 @@
   <title>{{- block "title" . }}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{- end }}</title>
 
   {{- partial "seo_tags.html" . -}}
+  <link rel="canonical" href="{{ with .Params.canonical }}{{ . }}{{ else }}{{ .Permalink }}{{ end }}" />
   <meta name="referrer" content="no-referrer-when-downgrade" />
+  {{- partial "jsonld.html" . -}}
 
   {{ $style := print (default "original" .Site.Params.themeStyle) ".css" | resources.Get | minify }}
   <link href="{{ $style.RelPermalink }}" rel="stylesheet">

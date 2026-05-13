@@ -3,6 +3,9 @@ title = ' Parameters in LLMs'
 date = 2025-09-12T17:23:41+05:30
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "How to count parameters in a transformer LLM — attention heads, MLP layers, embeddings, and normalization. Includes a worked example matching published model sizes."
+tags = ["machine-learning", "llm", "transformers", "mathematics"]
 +++
 
 # Generation-Time Parameters in Large Language Models
