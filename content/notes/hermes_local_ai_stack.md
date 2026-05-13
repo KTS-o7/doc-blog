@@ -3,6 +3,9 @@ title = "Building a Local AI Stack: Hermes, Bifrost, Telegram, and Camoufox"
 date = 2026-04-15T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Building a local AI stack: Hermes as the agent framework, Bifrost for LLM routing, a Telegram bot as the interface, and Camoufox for browser automation — all running on local hardware."
+tags = ["ai-agents", "open-source", "llm", "self-hosting"]
 +++
 
 I wanted a persistent AI agent that lives on my machine, reaches cloud models through a single gateway, and talks back to me on Telegram. Not a SaaS. Not a wrapper. Something I own end-to-end.

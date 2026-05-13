@@ -3,6 +3,9 @@ title = "A $22/Year VPS Running Three Self-Hosted Services"
 date = 2026-05-02T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Running Obsidian LiveSync, Matrix Synapse, and Calibre-Web on a $22/year VPS — nginx reverse proxy, Docker Compose, Cloudflare tunnels, and what actually fits in 2.9GB RAM."
+tags = ["infra", "self-hosting", "vps", "docker", "nginx"]
 +++
 
 I wanted three things: a private Obsidian sync server, a Matrix chat instance for personal use, and a self-hosted book library. The obvious path is a cheap VPS, a few Docker containers, and nginx as a reverse proxy in front of everything.

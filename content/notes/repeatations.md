@@ -3,6 +3,9 @@ title = 'Repeatations'
 date = 2025-09-18T17:23:25+05:30
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "CSES repetitions — finding the longest run of a single character in a string in a single linear pass."
+tags = ["competitive-programming", "cses", "algorithms", "strings"]
 +++
 
 Link to the problem : [Repeatations](https://cses.fi/problemset/task/1069)

@@ -3,6 +3,9 @@ title = 'Matrix-Vector Dot Product'
 date = 2025-09-06T07:07:07+01:00
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "Matrix-vector dot products are the inner loop of neural network inference. Understanding the memory access patterns and FLOP counts explains why hardware utilisation matters so much."
+tags = ["machine-learning", "linear-algebra", "mathematics", "performance"]
 +++
 
 ## Matrix-Vector Dot Product

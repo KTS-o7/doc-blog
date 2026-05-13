@@ -3,6 +3,9 @@ title = "Consistent Hashing: Scaling a Cluster Without Reshuffling the World"
 date = 2026-05-02T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Consistent hashing lets you add or remove nodes from a distributed cluster while minimising the number of keys that need to move — the algorithm behind Dynamo, Cassandra, and load balancers."
+tags = ["distributed-systems", "algorithms", "databases", "consistent-hashing"]
 +++
 
 The naive approach to distributing keys across N cache nodes is `hash(key) % N`. It works fine until you add or remove a node.

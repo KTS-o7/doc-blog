@@ -3,6 +3,9 @@ title = "SSE in FastAPI: The Tab Closed and My “Done” Code Never Ran"
 date = 2026-01-23T00:00:00+00:00
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Server-Sent Events in FastAPI silently drop cleanup code when a browser tab closes. How to detect client disconnects and ensure generator cleanup runs reliably."
+tags = ["infra", "fastapi", "python", "sse", "async"]
 +++
 
 I hit this bug the annoying way.

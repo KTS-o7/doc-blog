@@ -3,6 +3,9 @@ title = 'Why MySQL is not CA'
 date = 2025-09-05T07:07:07+01:00
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "MySQL is often called a CA system in CAP theorem discussions, but the reality is more nuanced — network partitions force tradeoffs even in single-master setups."
+tags = ["distributed-systems", "databases", "mysql", "cap-theorem", "consistency"]
 +++
 
 ---

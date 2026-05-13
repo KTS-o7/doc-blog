@@ -3,6 +3,9 @@ title = "Fixing Silent $0 Streaming Costs in AgentBudget: An OSS Contribution"
 date = 2026-04-16T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "An OSS contribution to AgentBudget: fixing silent $0 costs for streaming responses by hooking into the token usage callbacks that LangChain emits post-stream."
+tags = ["open-source", "ai-agents", "langchain", "oss-contribution"]
 +++
 
 AgentBudget patches the OpenAI and Anthropic SDKs to track the cost of every LLM call. Set a budget, get a hard limit. Simple premise.

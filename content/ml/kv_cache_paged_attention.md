@@ -3,6 +3,9 @@ title = "KV Cache and PagedAttention: Why vLLM Actually Works"
 date = 2026-05-03T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "KV cache stores attention keys and values across tokens to avoid recomputation during autoregressive decoding. PagedAttention extends this with virtual memory paging, making vLLM's throughput possible."
+tags = ["machine-learning", "llm", "inference", "attention", "vllm"]
 +++
 
 LLM inference is split into two phases with completely different performance characteristics. The first phase processes all input tokens in parallel -- it's compute-bound, and modern GPUs handle it well. The second phase generates one token at a time -- it's memory-bandwidth-bound, and this is where naive serving falls apart.

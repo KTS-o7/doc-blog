@@ -3,6 +3,9 @@ title = 'markdown stuff'
 date = 2024-01-14T07:07:07+01:00
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "A reference for Hugo-flavoured Markdown — shortcodes, callout blocks, math rendering with KaTeX, and code block options used on this site."
+tags = ["meta", "hugo", "markdown"]
 +++
 ## Introduction
 

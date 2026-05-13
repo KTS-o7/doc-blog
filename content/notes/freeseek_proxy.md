@@ -3,6 +3,9 @@ title = "Freeseek: Turning DeepSeek's Web Chat into an OpenAI-Compatible API"
 date = 2026-03-14T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Freeseek proxies DeepSeek's web chat interface into an OpenAI-compatible API endpoint, enabling local tools and agents to use DeepSeek R1 without an API key."
+tags = ["ai-tools", "open-source", "llm", "proxy"]
 +++
 
 I wanted to use DeepSeek with tools that only speak OpenAI's API. DeepSeek's official API has rate limits and costs money. Their web chat is free and unrestricted but it isn't an API — it's a browser session with Cloudflare protection, Proof-of-Work challenges, and a proprietary SSE format.

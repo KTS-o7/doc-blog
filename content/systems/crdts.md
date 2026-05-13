@@ -3,6 +3,9 @@ title = "CRDTs: Conflict-Free Replicated Data Types"
 date = 2026-05-03T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "CRDTs eliminate merge conflicts by design — commutative, associative, idempotent data structures that converge to the same state regardless of operation order. G-Counters, OR-Sets, and LWW registers explained."
+tags = ["distributed-systems", "crdt", "consistency", "algorithms"]
 +++
 
 Vector clocks tell you when two writes conflict. They don't tell you what to do about it. That's still your problem.

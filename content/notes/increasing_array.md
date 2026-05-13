@@ -3,6 +3,9 @@ title = 'Increasing Array'
 date = 2025-09-18T22:37:39+05:30
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "CSES increasing array — the minimum number of operations to make an array non-decreasing when you can only increment elements."
+tags = ["competitive-programming", "cses", "algorithms", "greedy"]
 +++
 
 Link to the problem : [Increasing Array](https://cses.fi/problemset/task/1094)

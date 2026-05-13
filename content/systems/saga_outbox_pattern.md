@@ -3,6 +3,9 @@ title = "The Saga Outbox Pattern: Reliable Event Delivery Without Two-Phase Comm
 date = 2026-05-03T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "The outbox pattern solves the dual-write problem in event-driven systems: persist events to a local outbox table in the same transaction as your domain change, then relay them reliably."
+tags = ["distributed-systems", "patterns", "saga", "event-driven", "databases"]
 +++
 
 The Saga pattern gives you distributed transactions without cross-service locks. Each step publishes an event when it completes, triggering the next step. But there's a gap in the naive implementation: publishing an event and updating your local database are two separate operations. If your service crashes between them, you get a committed database write with no event published, or an event published with no matching database write. The saga is now in an inconsistent state.

@@ -3,6 +3,9 @@ title = 'Eigenvalues of a Matrix'
 date = 2026-01-08T07:07:07+01:00
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "Eigenvalues and eigenvectors — the linear algebra behind PCA, Google's PageRank, and the stability analysis of dynamical systems. Geometric intuition and computation."
+tags = ["machine-learning", "linear-algebra", "mathematics", "eigenvalues"]
 +++
 
 

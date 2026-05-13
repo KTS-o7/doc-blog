@@ -3,6 +3,9 @@ title = 'Two Sets'
 date = 2025-09-19T15:41:11+05:30
 draft = false
 math = true
+author = "Krishnatejaswi S"
+description = "CSES two sets — partitioning integers 1..n into two subsets with equal sum, with a proof of when this is possible and an O(n) construction."
+tags = ["competitive-programming", "cses", "algorithms", "mathematics"]
 +++
 
 Link to the problem : [Two Sets](https://cses.fi/problemset/task/1092)

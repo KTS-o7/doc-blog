@@ -3,6 +3,9 @@ title = "Paxos: How Distributed Systems Agree on Anything"
 date = 2026-05-02T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "A deep dive into Paxos: Phase 1 (Prepare/Promise) and Phase 2 (Accept/Accepted), safety guarantees, liveness limitations, and why real systems use Multi-Paxos instead."
+tags = ["distributed-systems", "consensus", "paxos", "replication"]
 +++
 
 Every replicated database, every distributed lock, every leader election comes down to the same underlying problem: how do multiple nodes in an unreliable network agree on a single value, even when some of them crash or messages get delayed?

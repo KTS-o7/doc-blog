@@ -3,6 +3,9 @@ title = 'End-to-End HTTPS with Cloudflare Origin Certificates and Nginx'
 date = 2025-12-27T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "End-to-end HTTPS with Cloudflare Origin Certificates and Nginx — full-strict SSL mode, origin certificate installation, and Dockerfile configuration to eliminate 521 errors."
+tags = ["infra", "nginx", "cloudflare", "https", "security"]
 +++
 
 

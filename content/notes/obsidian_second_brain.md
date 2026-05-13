@@ -3,6 +3,9 @@ title = "Building a Second Brain with Obsidian, Zettelkasten, and an AI Agent"
 date = 2026-04-21T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Building a second brain with Obsidian and Zettelkasten — atomic notes, linking ideas, periodic reviews, and an AI agent that surfaces connections you'd otherwise miss."
+tags = ["productivity", "obsidian", "zettelkasten", "ai-tools", "note-taking"]
 +++
 
 I spend most of my time building things. CNCFlow, a side project blog, ML experiments, X threads. The problem is not a lack of output -- it is that none of it compounds. I finish a project, learn something real, and two months later I am re-deriving the same insight from scratch because it never got written down anywhere I would actually look again.

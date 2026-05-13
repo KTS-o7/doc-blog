@@ -3,6 +3,9 @@ title = "Many Small Tasks, One Deadline: Running Parallel AI Agents with Git Wor
 date = 2026-02-19T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "Running parallel AI coding agents with Git worktrees — isolate each task to its own working tree, fire agents concurrently, and merge results without conflicts."
+tags = ["ai-agents", "git", "productivity", "devtools"]
 +++
 
 I thought this would be an easy day.

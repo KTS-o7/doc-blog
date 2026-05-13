@@ -3,6 +3,9 @@ title = "The Bulkhead Pattern: Isolating Failures Before They Spread"
 date = 2026-05-03T00:00:00+05:30
 draft = false
 math = false
+author = "Krishnatejaswi S"
+description = "How the bulkhead pattern isolates failures in distributed systems — partition thread pools, connection pools, and resources so one degraded dependency cannot sink the whole service."
+tags = ["distributed-systems", "reliability", "patterns", "bulkhead"]
 +++
 
 Circuit breakers stop you from hammering a failing downstream service. Bulkheads stop a failing downstream service from consuming all the resources you have -- even if you're not hammering it.

@@ -1,0 +1,47 @@
+# {{ .Site.Title }}
+
+> {{ .Site.Params.description }}
+
+This is a technical research notebook covering distributed systems, machine learning internals,
+mathematics, and infrastructure engineering. Posts are long-form, written slowly, and updated
+continuously. All content is written by {{ .Site.Params.author.name }}.
+
+- GitHub: https://github.com/KTS-o7
+- Site: {{ .Site.BaseURL }}
+- RSS: {{ .Site.BaseURL }}index.xml
+
+## Distributed Systems
+
+Notes on consensus protocols, replication, consistency models, databases, and reliability patterns.
+{{ range where .Site.RegularPages "Section" "systems" }}
+- [{{ .Title }}]({{ .Permalink }}): {{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}
+{{ end }}
+
+## Machine Learning
+
+Notes on LLM internals, inference optimization, linear algebra, and the mathematical foundations of ML.
+{{ range where .Site.RegularPages "Section" "ml" }}
+- [{{ .Title }}]({{ .Permalink }}): {{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}
+{{ end }}
+
+## Infrastructure
+
+Notes on Kubernetes, CI/CD, self-hosting, reverse proxies, and operational engineering.
+{{ range where .Site.RegularPages "Section" "infra" }}
+- [{{ .Title }}]({{ .Permalink }}): {{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}
+{{ end }}
+
+## Notes
+
+Short observations, OSS contributions, tools, competitive programming solutions, and ideas in progress.
+{{ range where .Site.RegularPages "Section" "notes" }}
+- [{{ .Title }}]({{ .Permalink }}): {{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}
+{{ end }}
+
+## Optional
+
+Empty sections reserved for future content.
+
+- [Math]({{ .Site.BaseURL }}math/): Linear algebra, probability, and optimization — mathematical foundations of computation.
+- [Research]({{ .Site.BaseURL }}research/): Long-form essays on AI, ML systems, and exploratory technical thinking.
+- [About]({{ .Site.BaseURL }}about/): About Krishnatejaswi S — background, contact, and links.
